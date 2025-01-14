@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "charliermarsh.ruff",
+    "tamasfe.even-better-toml",
+    "ms-python.mypy-type-checker",
+    "biome.biome"
+  ]
+}

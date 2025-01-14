@@ -1,0 +1,22 @@
+{
+  "name": "config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "fix": "pnpm fix:prettier",
+    "fix:eslint": "eslint --config=typescript/eslint.config.js --fix .",
+    "fix:prettier": "prettier --list-different --write **/*.{json,md,yaml}",
+    "lint": "pnpm lint:prettier",
+    "lint:eslint": "eslint --config=typescript/eslint.config.js --max-warnings=0 .",
+    "lint:prettier": "prettier --check **/*.{json,md,yaml}"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.19.0",
+    "prettier": "^3.4.2"
+  }
+}

@@ -1,0 +1,146 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "config"
+readme = "README.md"
+requires-python = "==3.12.6"
+
+dependencies = ["fastapi[standard]>=0.112.0", "sqlalchemy>=2.0.31"]
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "freezegun>=1.5.1",
+    "mypy>=1.11.2",
+    "pytest-cov>=5.0.0",
+    "pytest-unordered>=0.6.1",
+    "pytest>=8.3.2",
+    "ruff>=0.6.8",
+]
+
+
+[tool.pdm.scripts]
+dev.cmd = "fastapi dev src/main.py"
+
+test.cmd = "pytest"
+
+fix.composite = ["fix-ruff-format", "fix-ruff-check", "fix-toml"]
+fix.keep_going = true
+fix-ruff-check = "ruff check --fix app"
+fix-ruff-format = "ruff format app"
+fix-toml = "npx @taplo/cli format pyproject.toml"
+
+lint.composite = [
+    "lint-ruff-check",
+    "lint-ruff-format",
+    "lint-mypy",
+    "lint-toml",
+]
+lint.keep_going = true
+lint-ruff-check = "ruff check app"
+lint-ruff-format = "ruff format --check app"
+lint-mypy = "mypy --config-file pyproject.toml app"
+lint-toml = "npx @taplo/cli format --check pyproject.toml"
+
+[tool.pytest.ini_options]
+addopts = "--cov=app/src --cov-report html:app/htmlcov --cov-branch"
+python_files = "*_test.py"
+
+[tool.ruff]
+src = ["app/src"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "ANN001",  # flake8-annotations.missing-type-function-argument
+    "ANN201",  # flake8-annotations.missing-return-type-undocumented-public-function
+    "ARG",     # flake8-unused-arguments
+    "ASYNC",   # flake8-async
+    "B006",    # flake8-bugbear.mutable-argument-default
+    "B007",    # flake8-bugbear.unused-loop-control-variable
+    "B008",    # flake8-bugbear.function-call-in-default-argument
+    "B013",    # flake8-bugbear.redundant-tuple-in-exception-handler
+    "B014",    # flake8-bugbear.duplicate-handler-exception
+    "B015",    # flake8-bugbear.useless-comparison
+    "B017",    # flake8-bugbear.assert-raises-exception
+    "B905",    # flake8-bugbear.zip-without-explicit-strict
+    "C4",      # flake8-comprehensions
+    "COM",     # flake8-commas
+    "D200",    # pydocstyle.fits-on-one-line
+    "D209",    # pydocstyle.new-line-after-last-paragraph
+    "DTZ",     # flake8-datetimez
+    "E",       # pycodestyle
+    "F",       # pyflakes
+    "FURB",    # refurb
+    "G",       # flake8-logging-format
+    "I",       # isort
+    "INP",     # flake8-no-pep420
+    "ISC",     # flake8-implicit-str-concat
+    "PERF",    # Perflint
+    "PGH",     # pygrep-hooks
+    "PIE",     # flake8-pie
+    "PTH",     # flake8-use-pathlib
+    "PT",      # flake8-pytest-style
+    "RET",     # flake8-return
+    "PLC0415", # pylint.import-outside-top-level
+    "PLR0917", # pylint.too-many-positional-arguments
+    "PLR5501", # pylint.collapsible-else-if
+    "RSE",     # flake8-raise
+    "RUF",     # ruff
+    "S",       # flake8-bandit
+    "SIM",     # flake8-simplify
+    "T",       # flake8-print
+    "TCH",     # flake8-type-checking
+    "TD003",   # flake8-todos.missing-todo-link
+    "TID251",  # flake8-tidy-imports.banned-api
+    "TID252",  # flake8-tidy-imports.relative-imports
+    "UP",      # pyupgrade
+    "UP042",   # pyupgrade.replace-str-enum
+]
+extend-safe-fixes = ["ANN201", "C4", "D200", "I", "PT", "SIM", "TCH", "UP"]
+ignore = [
+    "COM812", # flake8-commas.missing-trailing-comma - Conflictすることからignore推奨のため無視
+    "E501",   # pycodestyle.line-too-long - lintではignoreしformatter側で設定
+    "E722",   # pycodestyle.bare-except
+    "ISC001", # flake8-implicit-str-concat.single-line-implicit-string-concatenation - Conflictすることからignore推奨のため無視
+    "PT004",  # flake8-pytest-style.pytest-missing-fixture-name-underscore - 将来deprecatedになるため無視
+    "RUF001", # ruff.ambiguous-unicode-character-string
+    "RUF002", # ruff.ambiguous-unicode-character-docstring
+    "RUF003", # ruff.ambiguous-unicode-character-comment
+    "RUF012", # ruff.mutable-class-default - SQLAlchemyのモデル周りで不要にエラーが出るため無視
+]
+
+preview = true
+explicit-preview-rules = true
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+lines-after-imports = 2
+
+[tool.ruff.lint.per-file-ignores]
+"**/*test.py" = [
+    "PLR0917", # pylint.too-many-positional-arguments
+    "S101",    # flake8-bandit.assert
+    "S105",    # flake8-bandit.hardcoded-password-string
+    "S106",    # flake8-bandit.hardcoded-password-func-arg
+    "TID251",  # flake8-tidy-imports.banned-api
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"enum.Enum".msg = "代わりに'from enum import StrEnum'を用いてください"
+
+[tool.ruff.lint.pylint]
+max-positional-args = 0
+
+[tool.mypy]
+check_untyped_defs = true
+python_version = "3.12"
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = ['src.*']

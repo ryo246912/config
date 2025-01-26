@@ -1,8 +1,8 @@
 [project]
-name = "app"
-version = "0.1.0"
-description = "config"
-readme = "README.md"
+name            = "app"
+version         = "0.1.0"
+description     = "config"
+readme          = "README.md"
 requires-python = "==3.12.6"
 
 dependencies = ["fastapi[standard]>=0.112.0", "sqlalchemy>=2.0.31"]
@@ -20,17 +20,16 @@ dev = [
     "ruff>=0.6.8",
 ]
 
-
 [tool.pdm.scripts]
 dev.cmd = "fastapi dev src/main.py"
 
 test.cmd = "pytest"
 
-fix.composite = ["fix-ruff-format", "fix-ruff-check", "fix-toml"]
-fix.keep_going = true
-fix-ruff-check = "ruff check --fix app"
+fix.composite   = ["fix-ruff-format", "fix-ruff-check", "fix-toml"]
+fix.keep_going  = true
+fix-ruff-check  = "ruff check --fix app"
 fix-ruff-format = "ruff format app"
-fix-toml = "npx @taplo/cli format pyproject.toml"
+fix-toml        = "npx @taplo/cli format pyproject.toml"
 
 lint.composite = [
     "lint-ruff-check",
@@ -45,11 +44,11 @@ lint-mypy = "mypy --config-file pyproject.toml app"
 lint-toml = "npx @taplo/cli format --check pyproject.toml"
 
 [tool.pytest.ini_options]
-addopts = "--cov=app/src --cov-report html:app/htmlcov --cov-branch"
+addopts      = "--cov=app/src --cov-report html:app/htmlcov --cov-branch"
 python_files = "*_test.py"
 
 [tool.ruff]
-src = ["app/src"]
+src            = ["app/src"]
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -112,11 +111,11 @@ ignore = [
     "RUF012", # ruff.mutable-class-default - SQLAlchemyのモデル周りで不要にエラーが出るため無視
 ]
 
-preview = true
+preview                = true
 explicit-preview-rules = true
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+known-first-party   = ["src"]
 lines-after-imports = 2
 
 [tool.ruff.lint.per-file-ignores]
@@ -139,8 +138,8 @@ max-positional-args = 0
 
 [tool.mypy]
 check_untyped_defs = true
-python_version = "3.12"
+python_version     = "3.12"
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
-module = ['src.*']
+module                 = ['src.*']

@@ -34,7 +34,7 @@
     "editor.formatOnSave": true
   },
   // FIXME : なぜか設定が効かないので後で修正
-  // "evenBetterToml.taplo.configFile.path": "python/taplo.toml",
+  "evenBetterToml.taplo.configFile.path": "taplo.toml",
   "files.insertFinalNewline": true,
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "mypy-type-checker.args": ["--config-file=${workspaceFolder}/pyproject.toml"],

@@ -66,5 +66,14 @@
   "ruff.configuration": "pyproject.toml",
   "ruff.importStrategy": "fromEnvironment",
   "ruff.nativeServer": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  // terraform
+  "terraform.validation.enableEnhancedValidation": true,
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.formatDocument": "explicit"
+    }
+  }
 }

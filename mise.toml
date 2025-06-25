@@ -1,3 +1,4 @@
 [tools]
-node   = "20.18.1"
-python = "3.12.6"
+node      = "20.18.1"
+python    = "3.12.6"
+terraform = "1.12.2"

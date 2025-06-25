@@ -5,6 +5,8 @@
     "charliermarsh.ruff",
     "tamasfe.even-better-toml",
     "ms-python.mypy-type-checker",
-    "biome.biome"
+    "biome.biome",
+    // terraform
+    "hashicorp.terraform"
   ]
 }

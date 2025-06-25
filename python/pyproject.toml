@@ -1,9 +1,9 @@
 [project]
-name            = "app"
-version         = "0.1.0"
 description     = "config"
+name            = "app"
 readme          = "README.md"
 requires-python = "==3.12.6"
+version         = "0.1.0"
 
 dependencies = ["fastapi[standard]>=0.112.0", "sqlalchemy>=2.0.31"]
 
@@ -38,9 +38,9 @@ lint.composite = [
     "lint-toml",
 ]
 lint.keep_going = true
+lint-mypy = "mypy --config-file pyproject.toml app"
 lint-ruff-check = "ruff check app"
 lint-ruff-format = "ruff format --check app"
-lint-mypy = "mypy --config-file pyproject.toml app"
 lint-toml = "npx @taplo/cli format --check pyproject.toml"
 
 [tool.pytest.ini_options]
@@ -52,6 +52,18 @@ src            = ["app/src"]
 target-version = "py312"
 
 [tool.ruff.lint]
+extend-safe-fixes = ["ANN201", "C4", "D200", "I", "PT", "SIM", "TCH", "UP"]
+ignore = [
+    "COM812", # flake8-commas.missing-trailing-comma - Conflictすることからignore推奨のため無視
+    "E501",   # pycodestyle.line-too-long - lintではignoreしformatter側で設定
+    "E722",   # pycodestyle.bare-except
+    "ISC001", # flake8-implicit-str-concat.single-line-implicit-string-concatenation - Conflictすることからignore推奨のため無視
+    "PT004",  # flake8-pytest-style.pytest-missing-fixture-name-underscore - 将来deprecatedになるため無視
+    "RUF001", # ruff.ambiguous-unicode-character-string
+    "RUF002", # ruff.ambiguous-unicode-character-docstring
+    "RUF003", # ruff.ambiguous-unicode-character-comment
+    "RUF012", # ruff.mutable-class-default - SQLAlchemyのモデル周りで不要にエラーが出るため無視
+]
 select = [
     "ANN001",  # flake8-annotations.missing-type-function-argument
     "ANN201",  # flake8-annotations.missing-return-type-undocumented-public-function
@@ -98,21 +110,9 @@ select = [
     "UP",      # pyupgrade
     "UP042",   # pyupgrade.replace-str-enum
 ]
-extend-safe-fixes = ["ANN201", "C4", "D200", "I", "PT", "SIM", "TCH", "UP"]
-ignore = [
-    "COM812", # flake8-commas.missing-trailing-comma - Conflictすることからignore推奨のため無視
-    "E501",   # pycodestyle.line-too-long - lintではignoreしformatter側で設定
-    "E722",   # pycodestyle.bare-except
-    "ISC001", # flake8-implicit-str-concat.single-line-implicit-string-concatenation - Conflictすることからignore推奨のため無視
-    "PT004",  # flake8-pytest-style.pytest-missing-fixture-name-underscore - 将来deprecatedになるため無視
-    "RUF001", # ruff.ambiguous-unicode-character-string
-    "RUF002", # ruff.ambiguous-unicode-character-docstring
-    "RUF003", # ruff.ambiguous-unicode-character-comment
-    "RUF012", # ruff.mutable-class-default - SQLAlchemyのモデル周りで不要にエラーが出るため無視
-]
 
-preview                = true
 explicit-preview-rules = true
+preview                = true
 
 [tool.ruff.lint.isort]
 known-first-party   = ["src"]

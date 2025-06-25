@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "charliermarsh.ruff",
+    // toml
     "tamasfe.even-better-toml",
     "ms-python.mypy-type-checker",
     "biome.biome",

@@ -1,26 +1,42 @@
 {
-  "[javascript][typescript][typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome",
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.codeActionsOnSave": {
-      "quickfix.biome": "explicit",
-      "source.organizeImports.biome": "explicit"
-    }
-  },
-  "[vue][json][jsonc][scss]": {
+  "[json][jsonc][scss]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "[css][vue]": {
+  "[css]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "explicit"
     }
   },
+  "files.insertFinalNewline": true,
+  "prettier.enable": true,
+  // FIXME : config.jsの書式にする
+  "prettier.configPath": "typescript/.prettierrc.json",
+  // typescript
+  "[javascript][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.codeActionsOnSave": {
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  },
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  // Vue
+  "[vue]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.fixAll.stylelint": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  // python
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
@@ -29,15 +45,10 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
   },
-  "files.insertFinalNewline": true,
-  "javascript.preferences.importModuleSpecifier": "non-relative",
   "mypy-type-checker.args": ["--config-file=${workspaceFolder}/pyproject.toml"],
   "mypy-type-checker.importStrategy": "fromEnvironment",
   "mypy-type-checker.preferDaemon": true,
   "mypy-type-checker.reportingScope": "workspace",
-  "prettier.enable": true,
-  // FIXME : config.jsの書式にする
-  "prettier.configPath": "typescript/.prettierrc.json",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.extraPaths": ["app"],
   "python.analysis.packageIndexDepths": [
@@ -60,7 +71,6 @@
   "ruff.configuration": "pyproject.toml",
   "ruff.importStrategy": "fromEnvironment",
   "ruff.nativeServer": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative",
   // toml
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml",

@@ -1,3 +1,32 @@
+# lint
+[tasks.lint-action]
+depends = [
+    "lint-actionlint",
+    "lint-ghalint",
+    "lint-zizmor",
+]
+description = "Run all action linters"
+
+[tasks.lint-other]
+depends = [
+    "lint-toml",
+    "lint-yaml",
+]
+description = "Run other linters"
+
+# fix
+[tasks.fix-other]
+depends = [
+    "fix-toml",
+    "fix-yaml",
+]
+description = "Run other formatter"
+
+[tasks.fix-action]
+description = "Run fix actions files"
+run         = ["pinact run", "disable-checkout-persist-credentials"]
+
+# toml
 [tasks.lint-toml]
 description = "Run lint TOML files"
 hide        = true
@@ -8,8 +37,40 @@ description = "Run fix TOML files"
 hide        = true
 run         = "taplo format"
 
+# yaml
+[tasks.lint-yaml]
+description = "Run lint YAML files"
+hide        = true
+run         = "prettier --check '**/*.{yaml,yml}'"
+
+[tasks.fix-yaml]
+description = "Run fix YAML files"
+hide        = true
+run         = "prettier --write '**/*.{yaml,yml}'"
+
+# actions
+[tasks.lint-actionlint]
+description = "Run actionlint"
+hide        = true
+run         = "actionlint -ignore 'SC2016:'"
+
+[tasks.lint-zizmor]
+description = "Run zizmor"
+hide        = true
+run         = "zizmor --pedantic --gh-token=$(gh auth token) --min-severity=low .github/workflows"
+
+[tasks.lint-ghalint]
+description = "Run ghalint"
+hide        = true
+run         = "ghalint run"
+
 [tools]
-node             = "20.18.1"
-"npm:@taplo/cli" = "0.7.0"
-python           = "3.12.6"
-terraform        = "1.12.2"
+actionlint                     = "1.7.7"
+"aqua:suzuki-shunsuke/ghalint" = "1.5.1"
+golangci-lint                  = "2.1.6"
+node                           = "20.18.1"
+"npm:@taplo/cli"               = "0.7.0"
+"npm:prettier"                 = "3.6.0"
+"pipx:zizmor"                  = "1.9.0"
+python                         = "3.12.6"
+terraform                      = "1.12.2"

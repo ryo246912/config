@@ -9,6 +9,7 @@ description = "Run all action linters"
 
 [tasks.lint-other]
 depends = [
+    "lint-json",
     "lint-toml",
     "lint-yaml",
 ]
@@ -17,6 +18,7 @@ description = "Run other linters"
 # fix
 [tasks.fix-other]
 depends = [
+    "fix-json",
     "fix-toml",
     "fix-yaml",
 ]
@@ -25,6 +27,17 @@ description = "Run other formatter"
 [tasks.fix-action]
 description = "Run fix actions files"
 run         = ["pinact run", "disable-checkout-persist-credentials"]
+
+# json
+[tasks.lint-json]
+description = "Run lint json files"
+hide        = true
+run         = "prettier --check '**/*.json'"
+
+[tasks.fix-json]
+description = "Run fix json files"
+hide        = true
+run         = "prettier --write '**/*.json'"
 
 # toml
 [tasks.lint-toml]

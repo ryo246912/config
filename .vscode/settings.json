@@ -1,5 +1,5 @@
 {
-  "[json][jsonc][scss]": {
+  "[scss]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     },
@@ -15,6 +15,11 @@
   "prettier.enable": true,
   // FIXME : config.jsの書式にする
   "prettier.configPath": "typescript/.prettierrc.json",
+  // json
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   // typescript
   "[javascript][typescript][typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome",

@@ -1,3 +1,18 @@
+[tasks.fix-other]
+depends = [
+    "fix-toml",
+    "fix-yaml",
+]
+description = "Run other formatter"
+
+[tasks.lint-other]
+depends = [
+    "lint-toml",
+    "lint-yaml",
+]
+description = "Run other linters"
+
+# toml
 [tasks.lint-toml]
 description = "Run lint TOML files"
 hide        = true
@@ -8,8 +23,20 @@ description = "Run fix TOML files"
 hide        = true
 run         = "taplo format"
 
+# yaml
+[tasks.lint-yaml]
+description = "Run lint YAML files"
+hide        = true
+run         = "prettier --check '**/*.{yaml,yml}'"
+
+[tasks.fix-yaml]
+description = "Run fix YAML files"
+hide        = true
+run         = "prettier --write '**/*.{yaml,yml}'"
+
 [tools]
 node             = "20.18.1"
 "npm:@taplo/cli" = "0.7.0"
+"npm:prettier"   = "3.6.0"
 python           = "3.12.6"
 terraform        = "1.12.2"

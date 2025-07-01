@@ -1,12 +1,14 @@
 {
   "recommendations": [
     "esbenp.prettier-vscode",
+    // typescript
     "dbaeumer.vscode-eslint",
+    "biome.biome",
+    // python
     "charliermarsh.ruff",
+    "ms-python.mypy-type-checker",
     // toml
     "tamasfe.even-better-toml",
-    "ms-python.mypy-type-checker",
-    "biome.biome",
     // terraform
     "hashicorp.terraform"
   ]

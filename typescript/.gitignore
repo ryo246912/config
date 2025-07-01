@@ -1,0 +1,5 @@
+## TypeScript cache
+*.tsbuildinfo
+
+dist/
+node_modules

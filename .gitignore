@@ -1,1 +1,11 @@
 node_modules
+
+.venv
+venv/
+
+# AI
+## Claude
+settings.local.json
+
+## VSCode
+mcp.json

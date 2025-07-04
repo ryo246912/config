@@ -2,7 +2,7 @@
 description     = "config"
 name            = "app"
 readme          = "README.md"
-requires-python = "==3.12.6"
+requires-python = "==3.13.5"
 version         = "0.1.0"
 
 dependencies = ["fastapi[standard]>=0.112.0", "sqlalchemy>=2.0.31"]

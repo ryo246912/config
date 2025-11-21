@@ -79,7 +79,7 @@ run         = "ghalint run"
 
 [tools]
 actionlint                     = "1.7.9"
-"aqua:suzuki-shunsuke/ghalint" = "1.5.1"
+"aqua:suzuki-shunsuke/ghalint" = "1.5.3"
 golangci-lint                  = "2.2.1"
 node                           = "20.19.3"
 "npm:@taplo/cli"               = "0.7.0"

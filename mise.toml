@@ -78,7 +78,7 @@ hide        = true
 run         = "ghalint run"
 
 [tools]
-actionlint                     = "1.7.7"
+actionlint                     = "1.7.9"
 "aqua:suzuki-shunsuke/ghalint" = "1.5.1"
 golangci-lint                  = "2.2.1"
 node                           = "20.19.3"

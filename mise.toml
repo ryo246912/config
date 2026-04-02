@@ -80,7 +80,7 @@ run         = "ghalint run"
 [tools]
 actionlint                     = "1.7.12"
 "aqua:suzuki-shunsuke/ghalint" = "1.5.5"
-golangci-lint                  = "2.6.2"
+golangci-lint                  = "2.11.4"
 node                           = "20.19.5"
 "npm:@taplo/cli"               = "0.7.0"
 "npm:prettier"                 = "3.6.2"
